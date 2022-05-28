@@ -9,11 +9,11 @@
 /* Begin PBXBuildFile section */
 		FA795BA0284281C2006B3464 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FA795B9F284281C2006B3464 /* AppDelegate.m */; };
 		FA795BA3284281C2006B3464 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FA795BA2284281C2006B3464 /* SceneDelegate.m */; };
-		FA795BA6284281C2006B3464 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA795BA5284281C2006B3464 /* ViewController.m */; };
 		FA795BA9284281C2006B3464 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA795BA7284281C2006B3464 /* Main.storyboard */; };
 		FA795BAB284281C4006B3464 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA795BAA284281C4006B3464 /* Assets.xcassets */; };
 		FA795BAE284281C4006B3464 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA795BAC284281C4006B3464 /* LaunchScreen.storyboard */; };
 		FA795BB1284281C4006B3464 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FA795BB0284281C4006B3464 /* main.m */; };
+		FAE7A5AB28428AE3008CAF7D /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAE7A5AA28428AE3008CAF7D /* MainViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,13 +22,13 @@
 		FA795B9F284281C2006B3464 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		FA795BA1284281C2006B3464 /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
 		FA795BA2284281C2006B3464 /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
-		FA795BA4284281C2006B3464 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		FA795BA5284281C2006B3464 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		FA795BA8284281C2006B3464 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FA795BAA284281C4006B3464 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FA795BAD284281C4006B3464 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FA795BAF284281C4006B3464 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA795BB0284281C4006B3464 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		FAE7A5A928428AE3008CAF7D /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		FAE7A5AA28428AE3008CAF7D /* MainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,12 +61,11 @@
 		FA795B9D284281C2006B3464 /* KaizenPrototypeApp */ = {
 			isa = PBXGroup;
 			children = (
+				FAE7A5A828428A6A008CAF7D /* Main */,
 				FA795B9E284281C2006B3464 /* AppDelegate.h */,
 				FA795B9F284281C2006B3464 /* AppDelegate.m */,
 				FA795BA1284281C2006B3464 /* SceneDelegate.h */,
 				FA795BA2284281C2006B3464 /* SceneDelegate.m */,
-				FA795BA4284281C2006B3464 /* ViewController.h */,
-				FA795BA5284281C2006B3464 /* ViewController.m */,
 				FA795BA7284281C2006B3464 /* Main.storyboard */,
 				FA795BAA284281C4006B3464 /* Assets.xcassets */,
 				FA795BAC284281C4006B3464 /* LaunchScreen.storyboard */,
@@ -74,6 +73,15 @@
 				FA795BB0284281C4006B3464 /* main.m */,
 			);
 			path = KaizenPrototypeApp;
+			sourceTree = "<group>";
+		};
+		FAE7A5A828428A6A008CAF7D /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				FAE7A5A928428AE3008CAF7D /* MainViewController.h */,
+				FAE7A5AA28428AE3008CAF7D /* MainViewController.m */,
+			);
+			path = Main;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -146,9 +154,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FA795BA6284281C2006B3464 /* ViewController.m in Sources */,
 				FA795BA0284281C2006B3464 /* AppDelegate.m in Sources */,
 				FA795BB1284281C4006B3464 /* main.m in Sources */,
+				FAE7A5AB28428AE3008CAF7D /* MainViewController.m in Sources */,
 				FA795BA3284281C2006B3464 /* SceneDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

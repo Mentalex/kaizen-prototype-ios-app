@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		FA795BA0284281C2006B3464 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FA795B9F284281C2006B3464 /* AppDelegate.m */; };
 		FA795BA3284281C2006B3464 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FA795BA2284281C2006B3464 /* SceneDelegate.m */; };
-		FA795BA9284281C2006B3464 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA795BA7284281C2006B3464 /* Main.storyboard */; };
 		FA795BAB284281C4006B3464 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA795BAA284281C4006B3464 /* Assets.xcassets */; };
 		FA795BAE284281C4006B3464 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA795BAC284281C4006B3464 /* LaunchScreen.storyboard */; };
 		FA795BB1284281C4006B3464 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FA795BB0284281C4006B3464 /* main.m */; };
@@ -22,7 +21,6 @@
 		FA795B9F284281C2006B3464 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		FA795BA1284281C2006B3464 /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
 		FA795BA2284281C2006B3464 /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
-		FA795BA8284281C2006B3464 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FA795BAA284281C4006B3464 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FA795BAD284281C4006B3464 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FA795BAF284281C4006B3464 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -61,27 +59,26 @@
 		FA795B9D284281C2006B3464 /* KaizenPrototypeApp */ = {
 			isa = PBXGroup;
 			children = (
-				FAE7A5A828428A6A008CAF7D /* Main */,
 				FA795B9E284281C2006B3464 /* AppDelegate.h */,
-				FA795B9F284281C2006B3464 /* AppDelegate.m */,
 				FA795BA1284281C2006B3464 /* SceneDelegate.h */,
+				FA795B9F284281C2006B3464 /* AppDelegate.m */,
+				FA795BB0284281C4006B3464 /* main.m */,
 				FA795BA2284281C2006B3464 /* SceneDelegate.m */,
-				FA795BA7284281C2006B3464 /* Main.storyboard */,
+				FA795BAF284281C4006B3464 /* Info.plist */,
 				FA795BAA284281C4006B3464 /* Assets.xcassets */,
 				FA795BAC284281C4006B3464 /* LaunchScreen.storyboard */,
-				FA795BAF284281C4006B3464 /* Info.plist */,
-				FA795BB0284281C4006B3464 /* main.m */,
+				FAE7A5A828428A6A008CAF7D /* MainViewController */,
 			);
 			path = KaizenPrototypeApp;
 			sourceTree = "<group>";
 		};
-		FAE7A5A828428A6A008CAF7D /* Main */ = {
+		FAE7A5A828428A6A008CAF7D /* MainViewController */ = {
 			isa = PBXGroup;
 			children = (
 				FAE7A5A928428AE3008CAF7D /* MainViewController.h */,
 				FAE7A5AA28428AE3008CAF7D /* MainViewController.m */,
 			);
-			path = Main;
+			path = MainViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -143,7 +140,6 @@
 			files = (
 				FA795BAE284281C4006B3464 /* LaunchScreen.storyboard in Resources */,
 				FA795BAB284281C4006B3464 /* Assets.xcassets in Resources */,
-				FA795BA9284281C2006B3464 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -164,14 +160,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		FA795BA7284281C2006B3464 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				FA795BA8284281C2006B3464 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		FA795BAC284281C4006B3464 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -234,6 +222,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -287,6 +276,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -306,7 +296,6 @@
 				INFOPLIST_FILE = KaizenPrototypeApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -332,7 +321,6 @@
 				INFOPLIST_FILE = KaizenPrototypeApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (

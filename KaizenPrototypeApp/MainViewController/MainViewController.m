@@ -14,6 +14,7 @@
 @implementation MainViewController
 
 static NSString * const reuseIdentifier = @"Cell";
+static double const space = 5.0;
 
 - (void)viewDidLoad {
   [super viewDidLoad];
@@ -45,6 +46,33 @@ static NSString * const reuseIdentifier = @"Cell";
   cell.backgroundColor = [UIColor redColor];
   
   return cell;
+}
+
+#pragma mark <UICollectionViewDelegateFlowLayout>
+
+- (CGSize)collectionView:(UICollectionView *)collectionView
+                  layout:(UICollectionViewLayout *)collectionViewLayout
+  sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+  double const width = (self.view.frame.size.width - (3 * space)) / 2;
+  return CGSizeMake(width, width);
+}
+
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView
+                        layout:(UICollectionViewLayout *)collectionViewLayout
+        insetForSectionAtIndex:(NSInteger)section {
+  return UIEdgeInsetsMake(space, space, space, space);
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView
+                   layout:(UICollectionViewLayout *)collectionViewLayout
+minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
+  return space;
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView
+                   layout:(UICollectionViewLayout *)collectionViewLayout
+minimumLineSpacingForSectionAtIndex:(NSInteger)section {
+  return space;
 }
 
 #pragma mark <UICollectionViewDelegate>

@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MainViewController : UICollectionViewController <UICollectionViewDelegateFlowLayout>
+@interface GalleryViewController : UICollectionViewController <UICollectionViewDelegateFlowLayout>
 
 @end
 

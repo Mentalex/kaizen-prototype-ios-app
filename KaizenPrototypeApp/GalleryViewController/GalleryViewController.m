@@ -1,17 +1,17 @@
 //
-//  MainViewController.m
+//  GalleryViewController.m
 //  KaizenPrototypeApp
 //
 //  Created by Alex Tapia on 28/05/22.
 //
 
-#import "MainViewController.h"
+#import "GalleryViewController.h"
 
-@interface MainViewController ()
+@interface GalleryViewController ()
 
 @end
 
-@implementation MainViewController
+@implementation GalleryViewController
 
 static NSString * const reuseIdentifier = @"Cell";
 static double const space = 5.0;

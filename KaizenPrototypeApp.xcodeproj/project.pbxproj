@@ -12,7 +12,7 @@
 		FA795BAB284281C4006B3464 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA795BAA284281C4006B3464 /* Assets.xcassets */; };
 		FA795BAE284281C4006B3464 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA795BAC284281C4006B3464 /* LaunchScreen.storyboard */; };
 		FA795BB1284281C4006B3464 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FA795BB0284281C4006B3464 /* main.m */; };
-		FAE7A5AB28428AE3008CAF7D /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAE7A5AA28428AE3008CAF7D /* MainViewController.m */; };
+		FAE7A5AB28428AE3008CAF7D /* GalleryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAE7A5AA28428AE3008CAF7D /* GalleryViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,8 +25,8 @@
 		FA795BAD284281C4006B3464 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FA795BAF284281C4006B3464 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA795BB0284281C4006B3464 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		FAE7A5A928428AE3008CAF7D /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
-		FAE7A5AA28428AE3008CAF7D /* MainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		FAE7A5A928428AE3008CAF7D /* GalleryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GalleryViewController.h; sourceTree = "<group>"; };
+		FAE7A5AA28428AE3008CAF7D /* GalleryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GalleryViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,18 +67,18 @@
 				FA795BAF284281C4006B3464 /* Info.plist */,
 				FA795BAA284281C4006B3464 /* Assets.xcassets */,
 				FA795BAC284281C4006B3464 /* LaunchScreen.storyboard */,
-				FAE7A5A828428A6A008CAF7D /* MainViewController */,
+				FAE7A5A828428A6A008CAF7D /* GalleryViewController */,
 			);
 			path = KaizenPrototypeApp;
 			sourceTree = "<group>";
 		};
-		FAE7A5A828428A6A008CAF7D /* MainViewController */ = {
+		FAE7A5A828428A6A008CAF7D /* GalleryViewController */ = {
 			isa = PBXGroup;
 			children = (
-				FAE7A5A928428AE3008CAF7D /* MainViewController.h */,
-				FAE7A5AA28428AE3008CAF7D /* MainViewController.m */,
+				FAE7A5A928428AE3008CAF7D /* GalleryViewController.h */,
+				FAE7A5AA28428AE3008CAF7D /* GalleryViewController.m */,
 			);
-			path = MainViewController;
+			path = GalleryViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -152,7 +152,7 @@
 			files = (
 				FA795BA0284281C2006B3464 /* AppDelegate.m in Sources */,
 				FA795BB1284281C4006B3464 /* main.m in Sources */,
-				FAE7A5AB28428AE3008CAF7D /* MainViewController.m in Sources */,
+				FAE7A5AB28428AE3008CAF7D /* GalleryViewController.m in Sources */,
 				FA795BA3284281C2006B3464 /* SceneDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

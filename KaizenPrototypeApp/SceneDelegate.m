@@ -6,7 +6,7 @@
 //
 
 #import "SceneDelegate.h"
-#import "MainViewController/MainViewController.h"
+#import "GalleryViewController/GalleryViewController.h"
 
 @interface SceneDelegate ()
 
@@ -24,7 +24,7 @@
     _window = [[UIWindow alloc] initWithWindowScene: (UIWindowScene *)scene];
     
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-    MainViewController *controller = [[MainViewController alloc] initWithCollectionViewLayout:layout];
+    GalleryViewController *controller = [[GalleryViewController alloc] initWithCollectionViewLayout:layout];
     
     _window.rootViewController = [[UINavigationController alloc] initWithRootViewController:controller];
     [_window makeKeyAndVisible];

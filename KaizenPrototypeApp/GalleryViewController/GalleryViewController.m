@@ -6,6 +6,7 @@
 //
 
 #import "GalleryViewController.h"
+#import "Cell/GalleryCollectionViewCell.h"
 
 @interface GalleryViewController ()
 
@@ -21,7 +22,7 @@ static double const space = 5.0;
   self.title = @"Main";
   
   // Register cell classes
-  [self.collectionView registerClass:[UICollectionViewCell class]
+  [self.collectionView registerClass:[GalleryCollectionViewCell class]
           forCellWithReuseIdentifier:reuseIdentifier];
   
   // Do any additional setup after loading the view.
@@ -39,11 +40,11 @@ static double const space = 5.0;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-  UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier
-                                                                         forIndexPath:indexPath];
+  GalleryCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier
+                                                                              forIndexPath:indexPath];
   
   // Configure the cell
-  cell.backgroundColor = [UIColor redColor];
+  cell.imageView.image = [UIImage imageNamed:@"kaala"];
   
   return cell;
 }

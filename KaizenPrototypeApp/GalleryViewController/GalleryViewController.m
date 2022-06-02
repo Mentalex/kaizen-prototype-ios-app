@@ -6,7 +6,8 @@
 //
 
 #import "GalleryViewController.h"
-#import "Cell/GalleryCollectionViewCell.h"
+#import "GalleryCollectionViewCell.h"
+#import "DetailViewController.h"
 
 @interface GalleryViewController ()
 
@@ -77,5 +78,16 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section {
 }
 
 #pragma mark <UICollectionViewDelegate>
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+  DetailViewController *detailVC = [[DetailViewController alloc] init];
+  detailVC.image = [UIImage imageNamed:@"kaala"];
+  
+  
+  UINavigationController *navigationVC = [[UINavigationController alloc] initWithRootViewController:detailVC];
+  [navigationVC setModalPresentationStyle:UIModalPresentationFullScreen];
+  
+  [self presentViewController:navigationVC animated:YES completion:nil];
+}
 
 @end

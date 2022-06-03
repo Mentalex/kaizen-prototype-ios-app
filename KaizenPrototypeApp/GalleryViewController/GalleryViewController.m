@@ -8,6 +8,7 @@
 #import "GalleryViewController.h"
 #import "GalleryCollectionViewCell.h"
 #import "DetailViewController.h"
+#import "MotionAnimator.h"
 
 @interface GalleryViewController ()
 
@@ -83,8 +84,9 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section {
   DetailViewController *detailVC = [[DetailViewController alloc] init];
   detailVC.image = [UIImage imageNamed:@"kaala"];
   
-  
   UINavigationController *navigationVC = [[UINavigationController alloc] initWithRootViewController:detailVC];
+  MotionAnimator *animator = [[MotionAnimator alloc] init];
+  [navigationVC setTransitioningDelegate:animator];
   [navigationVC setModalPresentationStyle:UIModalPresentationFullScreen];
   
   [self presentViewController:navigationVC animated:YES completion:nil];

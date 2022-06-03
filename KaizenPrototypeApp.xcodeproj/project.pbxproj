@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA4E8BCA2849C13E008C6509 /* MotionAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4E8BC92849C13E008C6509 /* MotionAnimator.m */; };
 		FA57CD0E28471F6F0036A825 /* GalleryCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA57CD0D28471F6F0036A825 /* GalleryCollectionViewCell.m */; };
 		FA75331728486E3C0054DBCE /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA75331628486E3C0054DBCE /* DetailViewController.m */; };
 		FA795BA0284281C2006B3464 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FA795B9F284281C2006B3464 /* AppDelegate.m */; };
@@ -18,6 +19,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FA4E8BC82849C13E008C6509 /* MotionAnimator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MotionAnimator.h; sourceTree = "<group>"; };
+		FA4E8BC92849C13E008C6509 /* MotionAnimator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MotionAnimator.m; sourceTree = "<group>"; };
 		FA57CD0C28471F6F0036A825 /* GalleryCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GalleryCollectionViewCell.h; sourceTree = "<group>"; };
 		FA57CD0D28471F6F0036A825 /* GalleryCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GalleryCollectionViewCell.m; sourceTree = "<group>"; };
 		FA75331528486E3C0054DBCE /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
@@ -46,6 +49,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FA4E8BBF2849BFD7008C6509 /* TransitionAnimation */ = {
+			isa = PBXGroup;
+			children = (
+				FA4E8BC82849C13E008C6509 /* MotionAnimator.h */,
+				FA4E8BC92849C13E008C6509 /* MotionAnimator.m */,
+			);
+			path = TransitionAnimation;
+			sourceTree = "<group>";
+		};
 		FA57CD0B28471F200036A825 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -93,6 +105,7 @@
 				FA75331428486DF50054DBCE /* DetailViewController */,
 				FAE7A5A828428A6A008CAF7D /* GalleryViewController */,
 				FA795BAC284281C4006B3464 /* LaunchScreen.storyboard */,
+				FA4E8BBF2849BFD7008C6509 /* TransitionAnimation */,
 			);
 			path = KaizenPrototypeApp;
 			sourceTree = "<group>";
@@ -178,6 +191,7 @@
 			files = (
 				FA57CD0E28471F6F0036A825 /* GalleryCollectionViewCell.m in Sources */,
 				FA795BA0284281C2006B3464 /* AppDelegate.m in Sources */,
+				FA4E8BCA2849C13E008C6509 /* MotionAnimator.m in Sources */,
 				FA795BB1284281C4006B3464 /* main.m in Sources */,
 				FAE7A5AB28428AE3008CAF7D /* GalleryViewController.m in Sources */,
 				FA795BA3284281C2006B3464 /* SceneDelegate.m in Sources */,

@@ -85,9 +85,10 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section {
   detailVC.image = [UIImage imageNamed:@"kaala"];
   
   UINavigationController *navigationVC = [[UINavigationController alloc] initWithRootViewController:detailVC];
+  navigationVC.view.backgroundColor = [UIColor whiteColor];
   MotionAnimator *animator = [[MotionAnimator alloc] init];
   [navigationVC setTransitioningDelegate:animator];
-  [navigationVC setModalPresentationStyle:UIModalPresentationFullScreen];
+  [navigationVC setModalPresentationStyle:UIModalPresentationOverCurrentContext];
   
   [self presentViewController:navigationVC animated:YES completion:nil];
 }

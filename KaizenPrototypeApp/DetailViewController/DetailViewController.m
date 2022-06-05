@@ -29,6 +29,7 @@
 
 - (void)setupImageView {
   UIImageView *imageView = [[UIImageView alloc] init];
+  imageView.backgroundColor = [UIColor blueColor];
   imageView.contentMode = UIViewContentModeScaleAspectFit;
   imageView.image = self.image;
   [self.view addSubview:imageView];

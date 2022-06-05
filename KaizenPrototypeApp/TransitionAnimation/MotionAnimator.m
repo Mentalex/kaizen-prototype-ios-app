@@ -20,12 +20,13 @@
   [transitionContext.containerView addSubview:toVC.view];
   
   toVC.view.alpha = 0;
-  [UIView animateWithDuration:1.0 animations:^{
+  [UIViewPropertyAnimator runningPropertyAnimatorWithDuration:1.0
+                                                        delay:0.0
+                                                      options:UIViewAnimationOptionCurveEaseInOut
+                                                   animations:^{
     toVC.view.alpha = 1;
-  } completion:^(BOOL finished) {
-    if (finished) {
-      [transitionContext completeTransition:YES];
-    }
+  } completion:^(UIViewAnimatingPosition finalPosition) {
+    [transitionContext completeTransition:YES];
   }];
 }
 

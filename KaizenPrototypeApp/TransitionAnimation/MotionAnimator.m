@@ -19,15 +19,19 @@
   UIViewController *toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
   [transitionContext.containerView addSubview:toVC.view];
   
-  toVC.view.alpha = 0;
-  [UIViewPropertyAnimator runningPropertyAnimatorWithDuration:1.0
-                                                        delay:0.0
-                                                      options:UIViewAnimationOptionCurveEaseInOut
-                                                   animations:^{
+  toVC.view.alpha = 0;  
+  UIViewPropertyAnimator *animator = [[UIViewPropertyAnimator alloc]
+                                      initWithDuration:1.0
+                                      curve:UIViewAnimationCurveEaseInOut
+                                      animations:^{
     toVC.view.alpha = 1;
-  } completion:^(UIViewAnimatingPosition finalPosition) {
+  }];
+  
+  [animator addCompletion:^(UIViewAnimatingPosition finalPosition) {
     [transitionContext completeTransition:YES];
   }];
+  
+  [animator startAnimation];
 }
 
 #pragma mark <UIViewControllerTransitioningDelegate>

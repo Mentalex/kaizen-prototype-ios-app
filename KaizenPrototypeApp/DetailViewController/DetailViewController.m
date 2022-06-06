@@ -30,16 +30,22 @@
 - (void)setupImageView {
   UIImageView *imageView = [[UIImageView alloc] init];
   imageView.backgroundColor = [UIColor blueColor];
-  imageView.contentMode = UIViewContentModeScaleAspectFit;
-  imageView.image = self.image;
   [self.view addSubview:imageView];
   
+  // Set up Image
+  imageView.contentMode = UIViewContentModeScaleAspectFit;
+  imageView.image = self.image;
+  
+  // TODO: Use Aspect Ratio to Re-Size Image View's With and Height
+  // double aspectRatio = self.image.size.height / self.image.size.width;
+  
+  // Set up Constraints, Width and Height relative to Image Aspect Ratio
   [imageView setTranslatesAutoresizingMaskIntoConstraints:NO];
-  NSLayoutConstraint *topAnchor = [[imageView topAnchor] constraintEqualToAnchor:self.view.topAnchor];
-  NSLayoutConstraint *rightAnchor = [[imageView rightAnchor] constraintEqualToAnchor:self.view.rightAnchor];
-  NSLayoutConstraint *bottomAnchor = [[imageView bottomAnchor] constraintEqualToAnchor:self.view.bottomAnchor];
-  NSLayoutConstraint *leftAnchor = [[imageView leftAnchor] constraintEqualToAnchor:self.view.leftAnchor];
-  [NSLayoutConstraint activateConstraints:@[topAnchor, rightAnchor, bottomAnchor, leftAnchor]];
+  NSLayoutConstraint *centerXAnchor = [[imageView centerXAnchor] constraintEqualToAnchor:self.view.centerXAnchor];
+  NSLayoutConstraint *centerYAnchor = [[imageView centerYAnchor] constraintEqualToAnchor:self.view.centerYAnchor];
+  NSLayoutConstraint *widthAnchor = [[imageView widthAnchor] constraintEqualToAnchor:self.view.widthAnchor];
+  NSLayoutConstraint *heightAnchor = [[imageView heightAnchor] constraintEqualToAnchor:self.view.heightAnchor];
+  [NSLayoutConstraint activateConstraints:@[centerXAnchor, centerYAnchor, widthAnchor, heightAnchor]];
 }
 
 - (void)dismissAction {

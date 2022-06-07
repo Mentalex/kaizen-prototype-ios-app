@@ -30,21 +30,33 @@
 - (void)setupImageView {
   UIImageView *imageView = [[UIImageView alloc] init];
   imageView.backgroundColor = [UIColor blueColor];
-  [self.view addSubview:imageView];
-  
-  // Set up Image
-  imageView.contentMode = UIViewContentModeScaleAspectFit;
+  imageView.layer.cornerRadius = 25.0;
+  imageView.layer.masksToBounds = YES;
   imageView.image = self.image;
-  
-  // TODO: Use Aspect Ratio to Re-Size Image View's With and Height
-  // double aspectRatio = self.image.size.height / self.image.size.width;
+  [self.view addSubview:imageView];
   
   // Set up Constraints, Width and Height relative to Image Aspect Ratio
   [imageView setTranslatesAutoresizingMaskIntoConstraints:NO];
   NSLayoutConstraint *centerXAnchor = [[imageView centerXAnchor] constraintEqualToAnchor:self.view.centerXAnchor];
   NSLayoutConstraint *centerYAnchor = [[imageView centerYAnchor] constraintEqualToAnchor:self.view.centerYAnchor];
-  NSLayoutConstraint *widthAnchor = [[imageView widthAnchor] constraintEqualToAnchor:self.view.widthAnchor];
-  NSLayoutConstraint *heightAnchor = [[imageView heightAnchor] constraintEqualToAnchor:self.view.heightAnchor];
+  
+  /* Resize Image View base on Image Aspect Ration */
+  // Since we are updating the `imageView` size base on Aspect Ratio, this is not neccesary.
+  //imageView.contentMode = UIViewContentModeScaleAspectFit;
+  
+  // Calculate Multiplier base on Aspect Ration
+  double aspectRatio = self.image.size.height / self.image.size.width;
+  double multiplier = 1.0;
+  // TODO: Use `frame.size` here is not a good idea (because isn´t the correct size), we need to avoid it.
+  if (self.image.size.width > imageView.frame.size.width || self.image.size.height > imageView.frame.size.height) {
+    multiplier = (aspectRatio > 1) ? (1 / aspectRatio) : (1 * aspectRatio);
+  }
+  
+  NSLayoutConstraint *widthAnchor = [[imageView widthAnchor] constraintEqualToAnchor:self.view.widthAnchor
+                                                                          multiplier:multiplier];
+  NSLayoutConstraint *heightAnchor = [[imageView heightAnchor] constraintEqualToAnchor:self.view.heightAnchor
+                                                                            multiplier:multiplier];
+  
   [NSLayoutConstraint activateConstraints:@[centerXAnchor, centerYAnchor, widthAnchor, heightAnchor]];
 }
 

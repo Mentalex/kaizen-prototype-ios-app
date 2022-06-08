@@ -10,7 +10,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MotionAnimator : NSObject <UIViewControllerAnimatedTransitioning, UIViewControllerTransitioningDelegate>
+@interface MotionAnimator : NSObject
+<
+UIViewControllerAnimatedTransitioning,
+UIViewControllerTransitioningDelegate
+>
 
 @end
 

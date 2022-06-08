@@ -6,6 +6,7 @@
 //
 
 #import "MotionAnimator.h"
+#import "GalleryViewController.h"
 
 @implementation MotionAnimator
 
@@ -19,12 +20,25 @@
   UIViewController *toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
   [transitionContext.containerView addSubview:toVC.view];
   
-  toVC.view.alpha = 0;  
+  UINavigationController *fromNavVC = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
+  GalleryViewController *galleryVC = fromNavVC.viewControllers.firstObject;
+  
+  /* Make Scale Transition Animation of the whole ToView (`DetailViewController` view) */
+  CGRect initialFrame = [galleryVC selectedMediaViewFrame];
+  CGRect finalFrame = toVC.view.frame;
+
+  double xScaleFactor = initialFrame.size.width / finalFrame.size.width;
+  double yScaleFactor = initialFrame.size.height / finalFrame.size.height;
+
+  toVC.view.transform = CGAffineTransformMakeScale(xScaleFactor, yScaleFactor);
+  toVC.view.center = CGPointMake(CGRectGetMidX(initialFrame), CGRectGetMidY(initialFrame));
+
   UIViewPropertyAnimator *animator = [[UIViewPropertyAnimator alloc]
                                       initWithDuration:1.0
                                       curve:UIViewAnimationCurveEaseInOut
                                       animations:^{
-    toVC.view.alpha = 1;
+    toVC.view.transform = CGAffineTransformIdentity;
+    toVC.view.center = CGPointMake(CGRectGetMidX(finalFrame), CGRectGetMidY(finalFrame));
   }];
   
   [animator addCompletion:^(UIViewAnimatingPosition finalPosition) {

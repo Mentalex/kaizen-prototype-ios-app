@@ -26,8 +26,16 @@ static double const space = 5.0;
   // Register cell classes
   [self.collectionView registerClass:[GalleryCollectionViewCell class]
           forCellWithReuseIdentifier:reuseIdentifier];
-  
-  // Do any additional setup after loading the view.
+}
+
+#pragma mark Implementation Methods
+
+- (CGRect)selectedMediaViewFrame {
+  NSIndexPath *selectedIndexPath = self.collectionView.indexPathsForSelectedItems[0];
+  UICollectionViewCell *selectedCell = [self.collectionView cellForItemAtIndexPath:selectedIndexPath];
+  UIView *selectedView = [selectedCell superview];
+  CGRect selectedFrame = [selectedView convertRect:selectedCell.frame toView:nil];
+  return selectedFrame;
 }
 
 #pragma mark <UICollectionViewDataSource>

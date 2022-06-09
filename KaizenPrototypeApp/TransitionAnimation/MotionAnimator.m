@@ -10,6 +10,8 @@
 
 @implementation MotionAnimator
 
+static BOOL isPresenting;
+
 #pragma mark <UIViewControllerAnimatedTransitioning>
 
 - (NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext {
@@ -17,28 +19,34 @@
 }
 
 - (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
-  UIViewController *toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
-  [transitionContext.containerView addSubview:toVC.view];
+  UIView *view = [transitionContext viewForKey:isPresenting ? UITransitionContextToViewKey : UITransitionContextFromViewKey];
+  [transitionContext.containerView addSubview:view];
   
   UINavigationController *fromNavVC = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
   GalleryViewController *galleryVC = fromNavVC.viewControllers.firstObject;
   
   /* Make Scale Transition Animation of the whole ToView (`DetailViewController` view) */
-  CGRect initialFrame = [galleryVC selectedMediaViewFrame];
-  CGRect finalFrame = toVC.view.frame;
+  CGRect const selectedMediaViewFrame = [galleryVC selectedMediaViewFrame];
+  CGRect const initialFrame = isPresenting ? selectedMediaViewFrame : view.frame;
+  CGRect const finalFrame = isPresenting ? view.frame : selectedMediaViewFrame;
+  
+  double const initialWidth = initialFrame.size.width;
+  double const initialHeight = initialFrame.size.height;
+  double const finalWidth = finalFrame.size.width;
+  double const finalHeight = finalFrame.size.height;
+  
+  double const xScaleFactor = isPresenting ? (initialWidth / finalWidth) : (finalWidth / initialWidth);
+  double const yScaleFactor = isPresenting ? (initialHeight / finalHeight) : (finalHeight / initialHeight);
 
-  double xScaleFactor = initialFrame.size.width / finalFrame.size.width;
-  double yScaleFactor = initialFrame.size.height / finalFrame.size.height;
-
-  toVC.view.transform = CGAffineTransformMakeScale(xScaleFactor, yScaleFactor);
-  toVC.view.center = CGPointMake(CGRectGetMidX(initialFrame), CGRectGetMidY(initialFrame));
+  view.transform = CGAffineTransformMakeScale(xScaleFactor, yScaleFactor);
+  view.center = CGPointMake(CGRectGetMidX(initialFrame), CGRectGetMidY(initialFrame));
 
   UIViewPropertyAnimator *animator = [[UIViewPropertyAnimator alloc]
                                       initWithDuration:1.0
                                       curve:UIViewAnimationCurveEaseInOut
                                       animations:^{
-    toVC.view.transform = CGAffineTransformIdentity;
-    toVC.view.center = CGPointMake(CGRectGetMidX(finalFrame), CGRectGetMidY(finalFrame));
+    view.transform = CGAffineTransformIdentity;
+    view.center = CGPointMake(CGRectGetMidX(finalFrame), CGRectGetMidY(finalFrame));
   }];
   
   [animator addCompletion:^(UIViewAnimatingPosition finalPosition) {
@@ -53,12 +61,13 @@
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented
                                                                   presentingController:(UIViewController *)presenting
                                                                       sourceController:(UIViewController *)source {
-  
+  isPresenting = YES;
   return self;
 }
 
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
-  return nil;
+  isPresenting = NO;
+  return self;
 }
 
 @end

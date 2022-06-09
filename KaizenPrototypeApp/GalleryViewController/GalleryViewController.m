@@ -96,7 +96,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section {
   navigationVC.view.backgroundColor = [UIColor whiteColor];
   MotionAnimator *animator = [[MotionAnimator alloc] init];
   [navigationVC setTransitioningDelegate:animator];
-  [navigationVC setModalPresentationStyle:UIModalPresentationOverCurrentContext];
+  [navigationVC setModalPresentationStyle:UIModalPresentationCustom];
   
   [self presentViewController:navigationVC animated:YES completion:nil];
 }

@@ -7,10 +7,53 @@
 
 #import "MotionAnimator.h"
 #import "GalleryViewController.h"
+#import "DetailViewController.h"
 
 @implementation MotionAnimator
 
 static BOOL isPresenting;
+
+#pragma mark Private Methods
+
+- (void)animationForPresented:(id<UIViewControllerContextTransitioning>)transitionContext {
+  UIView *view = [transitionContext viewForKey:UITransitionContextToViewKey];
+  [transitionContext.containerView addSubview:view];
+  
+  UINavigationController *fromNavVC = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
+  GalleryViewController *galleryVC = fromNavVC.viewControllers.firstObject;
+  UIView *mediaView = [galleryVC selectedMediaView];
+  [transitionContext.containerView addSubview:mediaView];
+  
+  UINavigationController *toNavVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
+  DetailViewController *detailVC = toNavVC.viewControllers.firstObject;
+  [detailVC.view layoutIfNeeded];
+  
+  CGRect const initialFrame = mediaView.frame;
+  CGRect const finalFrame = [detailVC mediaViewFrame];
+  
+  double const xScaleFactor = finalFrame.size.width / initialFrame.size.width;
+  double const yScaleFactor = finalFrame.size.height / initialFrame.size.height;
+
+  /* Set up initial states */
+  view.alpha = 0.0;
+  
+  /* Perform animation */
+  UIViewPropertyAnimator *animator = [[UIViewPropertyAnimator alloc]
+                                      initWithDuration:1.0
+                                      curve:UIViewAnimationCurveEaseInOut
+                                      animations:^{
+    view.alpha = 1.0;
+    mediaView.transform = CGAffineTransformMakeScale(xScaleFactor, yScaleFactor);
+    mediaView.center = CGPointMake(CGRectGetMidX(finalFrame), CGRectGetMidY(finalFrame));
+  }];
+  
+  [animator addCompletion:^(UIViewAnimatingPosition finalPosition) {
+    [transitionContext completeTransition:YES];
+    [mediaView removeFromSuperview];
+  }];
+  
+  [animator startAnimation];
+}
 
 #pragma mark <UIViewControllerAnimatedTransitioning>
 
@@ -19,41 +62,9 @@ static BOOL isPresenting;
 }
 
 - (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
-  UIView *view = [transitionContext viewForKey:isPresenting ? UITransitionContextToViewKey : UITransitionContextFromViewKey];
-  [transitionContext.containerView addSubview:view];
-  
-  UINavigationController *fromNavVC = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
-  GalleryViewController *galleryVC = fromNavVC.viewControllers.firstObject;
-  
-  /* Make Scale Transition Animation of the whole ToView (`DetailViewController` view) */
-  CGRect const selectedMediaViewFrame = [galleryVC selectedMediaViewFrame];
-  CGRect const initialFrame = isPresenting ? selectedMediaViewFrame : view.frame;
-  CGRect const finalFrame = isPresenting ? view.frame : selectedMediaViewFrame;
-  
-  double const initialWidth = initialFrame.size.width;
-  double const initialHeight = initialFrame.size.height;
-  double const finalWidth = finalFrame.size.width;
-  double const finalHeight = finalFrame.size.height;
-  
-  double const xScaleFactor = isPresenting ? (initialWidth / finalWidth) : (finalWidth / initialWidth);
-  double const yScaleFactor = isPresenting ? (initialHeight / finalHeight) : (finalHeight / initialHeight);
-
-  view.transform = CGAffineTransformMakeScale(xScaleFactor, yScaleFactor);
-  view.center = CGPointMake(CGRectGetMidX(initialFrame), CGRectGetMidY(initialFrame));
-
-  UIViewPropertyAnimator *animator = [[UIViewPropertyAnimator alloc]
-                                      initWithDuration:1.0
-                                      curve:UIViewAnimationCurveEaseInOut
-                                      animations:^{
-    view.transform = CGAffineTransformIdentity;
-    view.center = CGPointMake(CGRectGetMidX(finalFrame), CGRectGetMidY(finalFrame));
-  }];
-  
-  [animator addCompletion:^(UIViewAnimatingPosition finalPosition) {
-    [transitionContext completeTransition:YES];
-  }];
-  
-  [animator startAnimation];
+  if (isPresenting) {
+    [self animationForPresented:transitionContext];
+  }
 }
 
 #pragma mark <UIViewControllerTransitioningDelegate>

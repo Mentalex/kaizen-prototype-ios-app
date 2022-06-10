@@ -12,6 +12,8 @@
 
 @interface GalleryViewController ()
 
+@property (nonatomic) GalleryCollectionViewCell *selectedCell;
+
 @end
 
 @implementation GalleryViewController
@@ -28,14 +30,15 @@ static double const space = 5.0;
           forCellWithReuseIdentifier:reuseIdentifier];
 }
 
-#pragma mark Implementation Methods
+#pragma mark Public Methods
 
-- (CGRect)selectedMediaViewFrame {
-  NSIndexPath *selectedIndexPath = self.collectionView.indexPathsForSelectedItems[0];
-  UICollectionViewCell *selectedCell = [self.collectionView cellForItemAtIndexPath:selectedIndexPath];
-  UIView *selectedView = [selectedCell superview];
-  CGRect selectedFrame = [selectedView convertRect:selectedCell.frame toView:nil];
-  return selectedFrame;
+- (UIView *)selectedMediaView {
+  UIImageView *selectedImageView = [[UIImageView alloc] initWithImage:_selectedCell.imageView.image];
+  
+  UIView *superView = [_selectedCell superview];
+  selectedImageView.frame = [superView convertRect:_selectedCell.frame toView:nil];
+  
+  return selectedImageView;
 }
 
 #pragma mark <UICollectionViewDataSource>
@@ -89,6 +92,8 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section {
 #pragma mark <UICollectionViewDelegate>
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+  _selectedCell = (GalleryCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
+  
   DetailViewController *detailVC = [[DetailViewController alloc] init];
   detailVC.image = [UIImage imageNamed:@"kaala"];
   

@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) UIImage *image;
 
 - (CGRect)mediaViewFrame;
+- (void)hideMediaView:(BOOL)hide;
 
 @end
 

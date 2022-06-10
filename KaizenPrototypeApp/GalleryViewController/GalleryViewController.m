@@ -30,7 +30,7 @@ static double const space = 5.0;
           forCellWithReuseIdentifier:reuseIdentifier];
 }
 
-#pragma mark Public Methods
+#pragma mark Methods Implementation
 
 - (UIView *)selectedMediaView {
   UIImageView *selectedImageView = [[UIImageView alloc] initWithImage:_selectedCell.imageView.image];
@@ -39,6 +39,10 @@ static double const space = 5.0;
   selectedImageView.frame = [superView convertRect:_selectedCell.frame toView:nil];
   
   return selectedImageView;
+}
+
+- (void)hideSelectedCell:(BOOL)hide {
+  [_selectedCell setHidden:hide];
 }
 
 #pragma mark <UICollectionViewDataSource>

@@ -68,15 +68,18 @@
   [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-#pragma mark Public Methods
+#pragma mark Methods Implementation
 
 - (CGRect)mediaViewFrame {
-  CGRect mediaViewFrame = CGRectMake(
-                                     _imageView.frame.origin.x,
+  CGRect mediaViewFrame = CGRectMake(_imageView.frame.origin.x,
                                      _imageView.frame.origin.y,
                                      _imageView.frame.size.width,
                                      _imageView.frame.size.height);
   return mediaViewFrame;
+}
+
+- (void)hideMediaView:(BOOL)hide {
+  [_imageView setHidden:hide];
 }
 
 @end

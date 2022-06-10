@@ -35,6 +35,9 @@ static BOOL isPresenting;
   double const yScaleFactor = finalFrame.size.height / initialFrame.size.height;
 
   /* Set up initial states */
+  [galleryVC hideSelectedCell:YES];
+  [detailVC hideMediaView:YES];
+  mediaView.layer.masksToBounds = YES;
   view.alpha = 0.0;
   
   /* Perform animation */
@@ -45,11 +48,14 @@ static BOOL isPresenting;
     view.alpha = 1.0;
     mediaView.transform = CGAffineTransformMakeScale(xScaleFactor, yScaleFactor);
     mediaView.center = CGPointMake(CGRectGetMidX(finalFrame), CGRectGetMidY(finalFrame));
+    mediaView.layer.cornerRadius = 25.0;
   }];
   
   [animator addCompletion:^(UIViewAnimatingPosition finalPosition) {
-    [transitionContext completeTransition:YES];
+    [galleryVC hideSelectedCell:NO];
+    [detailVC hideMediaView:NO];
     [mediaView removeFromSuperview];
+    [transitionContext completeTransition:YES];
   }];
   
   [animator startAnimation];

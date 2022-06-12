@@ -11,11 +11,9 @@
 
 @implementation MotionAnimator
 
-static BOOL isPresenting;
-
 #pragma mark Private Methods
 
-- (void)animationForPresented:(id<UIViewControllerContextTransitioning>)transitionContext {
+- (void)animationForPresenting:(id<UIViewControllerContextTransitioning>)transitionContext {
   UIView *view = [transitionContext viewForKey:UITransitionContextToViewKey];
   [transitionContext.containerView addSubview:view];
   
@@ -61,6 +59,51 @@ static BOOL isPresenting;
   [animator startAnimation];
 }
 
+- (void)animationForDismissing:(id<UIViewControllerContextTransitioning>)transitionContext {
+  UIView *view = [transitionContext viewForKey:UITransitionContextFromViewKey];
+
+  UINavigationController *fromNavVC = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
+  DetailViewController *detailVC = fromNavVC.viewControllers.firstObject;
+  
+  UINavigationController *toNavVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
+  GalleryViewController *galleryVC = toNavVC.viewControllers.firstObject;
+  UIView *mediaView = [galleryVC selectedMediaView];
+  [transitionContext.containerView addSubview:mediaView];
+  
+  CGRect const initialFrame = [detailVC mediaViewFrame];
+  CGRect const finalFrame = mediaView.frame;
+  
+  double const xScaleFactor = finalFrame.size.width / initialFrame.size.width;
+  double const yScaleFactor = finalFrame.size.height / initialFrame.size.height;
+
+  /* Set up initial states */
+  [galleryVC hideSelectedCell:YES];
+  [detailVC hideMediaView:YES];
+  mediaView.frame = initialFrame;
+  mediaView.layer.masksToBounds = YES;
+  mediaView.layer.cornerRadius = 25.0;
+  
+  /* Perform animation */
+  UIViewPropertyAnimator *animator = [[UIViewPropertyAnimator alloc]
+                                      initWithDuration:1.0
+                                      curve:UIViewAnimationCurveEaseInOut
+                                      animations:^{
+    view.alpha = 0.0;
+    mediaView.transform = CGAffineTransformMakeScale(xScaleFactor, yScaleFactor);
+    mediaView.center = CGPointMake(CGRectGetMidX(finalFrame), CGRectGetMidY(finalFrame));
+    mediaView.layer.cornerRadius = 0.0;
+  }];
+  
+  [animator addCompletion:^(UIViewAnimatingPosition finalPosition) {
+    [galleryVC hideSelectedCell:NO];
+    [detailVC hideMediaView:NO];
+    [mediaView removeFromSuperview];
+    [transitionContext completeTransition:YES];
+  }];
+  
+  [animator startAnimation];
+}
+
 #pragma mark <UIViewControllerAnimatedTransitioning>
 
 - (NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext {
@@ -68,23 +111,11 @@ static BOOL isPresenting;
 }
 
 - (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
-  if (isPresenting) {
-    [self animationForPresented:transitionContext];
+  if (_isPresenting) {
+    [self animationForPresenting:transitionContext];
+  } else {
+    [self animationForDismissing:transitionContext];
   }
-}
-
-#pragma mark <UIViewControllerTransitioningDelegate>
-
-- (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented
-                                                                  presentingController:(UIViewController *)presenting
-                                                                      sourceController:(UIViewController *)source {
-  isPresenting = YES;
-  return self;
-}
-
-- (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
-  isPresenting = NO;
-  return self;
 }
 
 @end

@@ -9,7 +9,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface GalleryViewController : UICollectionViewController <UICollectionViewDelegateFlowLayout>
+@interface GalleryViewController : UICollectionViewController
+<
+UICollectionViewDelegateFlowLayout,
+UIViewControllerTransitioningDelegate
+>
 
 - (UIView *)selectedMediaView;
 - (void)hideSelectedCell:(BOOL)hide;

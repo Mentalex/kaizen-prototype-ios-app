@@ -12,9 +12,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MotionAnimator : NSObject
 <
-UIViewControllerAnimatedTransitioning,
-UIViewControllerTransitioningDelegate
+UIViewControllerAnimatedTransitioning
 >
+
+@property (nonatomic) BOOL isPresenting;
 
 @end
 

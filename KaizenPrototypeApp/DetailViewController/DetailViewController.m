@@ -38,8 +38,22 @@
   _imageView.layer.masksToBounds = YES;
   _imageView.image = self.image;
   [self.view addSubview:_imageView];
+
+  [self setupConstraintsAndUseContentModeScaleAspectFit];
+}
+
+- (void)setupConstraintsAndUseContentModeScaleAspectFit {
+  _imageView.contentMode = UIViewContentModeScaleAspectFit;
   
-  // Set up Constraints, Width and Height relative to Image Aspect Ratio
+  [_imageView setTranslatesAutoresizingMaskIntoConstraints:NO];
+  NSLayoutConstraint *topAnchor = [[_imageView topAnchor] constraintEqualToAnchor:self.view.topAnchor];
+  NSLayoutConstraint *leadingAnchor = [[_imageView leadingAnchor] constraintEqualToAnchor:self.view.leadingAnchor];
+  NSLayoutConstraint *bottomAnchor = [[_imageView bottomAnchor] constraintEqualToAnchor:self.view.bottomAnchor];
+  NSLayoutConstraint *trailingAnchor = [[_imageView trailingAnchor] constraintEqualToAnchor:self.view.trailingAnchor];
+  [NSLayoutConstraint activateConstraints:@[topAnchor, leadingAnchor, bottomAnchor, trailingAnchor]];
+}
+
+- (void)setupConstraintsBaseOnAspectRatio {
   [_imageView setTranslatesAutoresizingMaskIntoConstraints:NO];
   NSLayoutConstraint *centerXAnchor = [[_imageView centerXAnchor] constraintEqualToAnchor:self.view.centerXAnchor];
   NSLayoutConstraint *centerYAnchor = [[_imageView centerYAnchor] constraintEqualToAnchor:self.view.centerYAnchor];
@@ -56,6 +70,7 @@
     multiplier = (aspectRatio > 1) ? (1 / aspectRatio) : (1 * aspectRatio);
   }
   
+  // Set up Constraints, Width and Height relative to Image Aspect Ratio
   NSLayoutConstraint *widthAnchor = [[_imageView widthAnchor] constraintEqualToAnchor:self.view.widthAnchor
                                                                            multiplier:multiplier];
   NSLayoutConstraint *heightAnchor = [[_imageView heightAnchor] constraintEqualToAnchor:self.view.heightAnchor

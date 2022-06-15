@@ -18,8 +18,9 @@
 
 @implementation GalleryViewController
 
-static NSString * const reuseIdentifier = @"Cell";
-static double const space = 5.0;
+static NSString *const reuseIdentifier = @"Cell";
+static CGFloat const space = 5.0;
+static int const numberOfItems = 25;
 
 - (void)viewDidLoad {
   [super viewDidLoad];
@@ -53,7 +54,7 @@ static double const space = 5.0;
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-  return 10;
+  return numberOfItems;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -61,7 +62,9 @@ static double const space = 5.0;
                                                                               forIndexPath:indexPath];
   
   // Configure the cell
-  cell.imageView.image = [UIImage imageNamed:@"kaala"];
+  NSInteger number = arc4random_uniform(3);
+  NSString *imageName = [[NSString alloc] initWithFormat:@"pexels-%ld", number];
+  cell.imageView.image = [UIImage imageNamed:imageName];
   
   return cell;
 }
@@ -99,7 +102,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section {
   _selectedCell = (GalleryCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
   
   DetailViewController *detailVC = [[DetailViewController alloc] init];
-  detailVC.image = [UIImage imageNamed:@"kaala"];
+  detailVC.image = _selectedCell.imageView.image;
   
   UINavigationController *navigationVC = [[UINavigationController alloc] initWithRootViewController:detailVC];
   navigationVC.view.backgroundColor = [UIColor whiteColor];

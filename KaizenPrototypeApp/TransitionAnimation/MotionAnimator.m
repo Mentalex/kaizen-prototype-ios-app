@@ -26,11 +26,7 @@
   DetailViewController *detailVC = toNavVC.viewControllers.firstObject;
   [detailVC.view layoutIfNeeded];
   
-  CGRect const initialFrame = mediaView.frame;
   CGRect const finalFrame = [detailVC mediaViewFrame];
-  
-  double const xScaleFactor = finalFrame.size.width / initialFrame.size.width;
-  double const yScaleFactor = finalFrame.size.height / initialFrame.size.height;
 
   /* Set up initial states */
   [galleryVC hideSelectedCell:YES];
@@ -44,9 +40,9 @@
                                       curve:UIViewAnimationCurveEaseInOut
                                       animations:^{
     view.alpha = 1.0;
-    mediaView.transform = CGAffineTransformMakeScale(xScaleFactor, yScaleFactor);
+    mediaView.frame = finalFrame;
     mediaView.center = CGPointMake(CGRectGetMidX(finalFrame), CGRectGetMidY(finalFrame));
-    mediaView.layer.cornerRadius = 25.0;
+    mediaView.layer.cornerRadius = [detailVC getMediaViewCornerRadius];
   }];
   
   [animator addCompletion:^(UIViewAnimatingPosition finalPosition) {
@@ -72,16 +68,13 @@
   
   CGRect const initialFrame = [detailVC mediaViewFrame];
   CGRect const finalFrame = mediaView.frame;
-  
-  double const xScaleFactor = finalFrame.size.width / initialFrame.size.width;
-  double const yScaleFactor = finalFrame.size.height / initialFrame.size.height;
 
   /* Set up initial states */
   [galleryVC hideSelectedCell:YES];
   [detailVC hideMediaView:YES];
   mediaView.frame = initialFrame;
   mediaView.layer.masksToBounds = YES;
-  mediaView.layer.cornerRadius = 25.0;
+  mediaView.layer.cornerRadius = [detailVC getMediaViewCornerRadius];
   
   /* Perform animation */
   UIViewPropertyAnimator *animator = [[UIViewPropertyAnimator alloc]
@@ -89,7 +82,7 @@
                                       curve:UIViewAnimationCurveEaseInOut
                                       animations:^{
     view.alpha = 0.0;
-    mediaView.transform = CGAffineTransformMakeScale(xScaleFactor, yScaleFactor);
+    mediaView.frame = finalFrame;
     mediaView.center = CGPointMake(CGRectGetMidX(finalFrame), CGRectGetMidY(finalFrame));
     mediaView.layer.cornerRadius = 0.0;
   }];

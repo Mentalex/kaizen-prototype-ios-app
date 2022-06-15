@@ -15,6 +15,8 @@
 
 @implementation DetailViewController
 
+static CGFloat const mediaViewCornerRadius = 25.0;
+
 - (void)viewDidLoad {
   [super viewDidLoad];
   [self setupCloseButton];
@@ -34,12 +36,12 @@
 - (void)setupImageView {
   _imageView = [[UIImageView alloc] init];
   _imageView.backgroundColor = [UIColor blueColor];
-  _imageView.layer.cornerRadius = 25.0;
+  _imageView.layer.cornerRadius = mediaViewCornerRadius;
   _imageView.layer.masksToBounds = YES;
   _imageView.image = self.image;
   [self.view addSubview:_imageView];
 
-  [self setupConstraintsAndUseContentModeScaleAspectFit];
+  [self setupConstraintsBaseOnAspectRatio];
 }
 
 - (void)setupConstraintsAndUseContentModeScaleAspectFit {
@@ -95,6 +97,10 @@
 
 - (void)hideMediaView:(BOOL)hide {
   [_imageView setHidden:hide];
+}
+
+- (CGFloat)getMediaViewCornerRadius {
+  return mediaViewCornerRadius;
 }
 
 @end

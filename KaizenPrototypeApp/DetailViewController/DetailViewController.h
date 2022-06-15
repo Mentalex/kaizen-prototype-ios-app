@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (CGRect)mediaViewFrame;
 - (void)hideMediaView:(BOOL)hide;
+- (CGFloat)getMediaViewCornerRadius;
 
 @end
 

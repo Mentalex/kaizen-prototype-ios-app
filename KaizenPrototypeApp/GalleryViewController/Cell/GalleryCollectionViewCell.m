@@ -19,6 +19,9 @@
 
 - (void)setupView {
   _imageView = [[UIImageView alloc] init];
+  [_imageView setContentMode:UIViewContentModeScaleAspectFit];
+  [_imageView setClipsToBounds:YES];
+  [_imageView setBackgroundColor:[UIColor blueColor]];
   [self.contentView addSubview:_imageView];
   
   [_imageView setTranslatesAutoresizingMaskIntoConstraints:NO];

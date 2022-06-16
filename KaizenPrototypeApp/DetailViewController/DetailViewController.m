@@ -41,10 +41,10 @@ static CGFloat const mediaViewCornerRadius = 25.0;
   _imageView.image = self.image;
   [self.view addSubview:_imageView];
 
-  [self setupConstraintsBaseOnAspectRatio];
+  [self setupConstraintsAndUseContentModeSetup];
 }
 
-- (void)setupConstraintsAndUseContentModeScaleAspectFit {
+- (void)setupConstraintsAndUseContentModeSetup {
   _imageView.contentMode = UIViewContentModeScaleAspectFit;
   
   [_imageView setTranslatesAutoresizingMaskIntoConstraints:NO];
@@ -64,8 +64,8 @@ static CGFloat const mediaViewCornerRadius = 25.0;
   // Since we are updating the `imageView` size base on Aspect Ratio, this is not neccesary.
   //imageView.contentMode = UIViewContentModeScaleAspectFit;
   
-  // Calculate Multiplier base on Aspect Ration
-  double aspectRatio = self.image.size.height / self.image.size.width;
+  // Calculate Multiplier base on Aspect Ratio
+  double aspectRatio = self.image.size.width / self.image.size.height;
   double multiplier = 1.0;
   // TODO: Use `frame.size` here is not a good idea (because isn´t the correct size), we need to avoid it.
   if (self.image.size.width > _imageView.frame.size.width || self.image.size.height > _imageView.frame.size.height) {
@@ -73,10 +73,12 @@ static CGFloat const mediaViewCornerRadius = 25.0;
   }
   
   // Set up Constraints, Width and Height relative to Image Aspect Ratio
-  NSLayoutConstraint *widthAnchor = [[_imageView widthAnchor] constraintEqualToAnchor:self.view.widthAnchor
-                                                                           multiplier:multiplier];
-  NSLayoutConstraint *heightAnchor = [[_imageView heightAnchor] constraintEqualToAnchor:self.view.heightAnchor
-                                                                             multiplier:multiplier];
+  NSLayoutConstraint *widthAnchor = [[_imageView widthAnchor]
+                                     constraintEqualToAnchor:self.view.widthAnchor
+                                     multiplier:multiplier];
+  NSLayoutConstraint *heightAnchor = [[_imageView heightAnchor]
+                                      constraintEqualToAnchor:self.view.heightAnchor
+                                      multiplier:multiplier];
   
   [NSLayoutConstraint activateConstraints:@[centerXAnchor, centerYAnchor, widthAnchor, heightAnchor]];
 }

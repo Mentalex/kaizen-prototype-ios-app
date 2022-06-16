@@ -35,6 +35,7 @@ static int const numberOfItems = 25;
 
 - (UIView *)selectedMediaView {
   UIImageView *selectedImageView = [[UIImageView alloc] initWithImage:_selectedCell.imageView.image];
+  [selectedImageView setContentMode:_selectedCell.imageView.contentMode];
   
   UIView *superView = [_selectedCell superview];
   selectedImageView.frame = [superView convertRect:_selectedCell.frame toView:nil];
@@ -62,7 +63,7 @@ static int const numberOfItems = 25;
                                                                               forIndexPath:indexPath];
   
   // Configure the cell
-  NSInteger number = arc4random_uniform(3);
+  NSInteger number = arc4random_uniform(4);
   NSString *imageName = [[NSString alloc] initWithFormat:@"pexels-%ld", number];
   cell.imageView.image = [UIImage imageNamed:imageName];
   

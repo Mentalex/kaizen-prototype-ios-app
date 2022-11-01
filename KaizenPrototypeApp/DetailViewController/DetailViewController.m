@@ -21,8 +21,7 @@ static CGFloat const mediaViewCornerRadius = 25.0;
 - (void)viewDidLoad {
   [super viewDidLoad];
   [self setupCloseButton];
-//  [self setupImageView];
-  [self setupView];
+  [self setupImageView];
 }
 
 #pragma mark Private Methods
@@ -33,16 +32,6 @@ static CGFloat const mediaViewCornerRadius = 25.0;
                                                                  target:self
                                                                  action:@selector(dismissAction)];
   self.navigationItem.rightBarButtonItem = closeButton;
-}
-
-- (void)setupView {
-  _imageView = [[UIImageView alloc] initWithImage:self.image];
-  
-  _scrollView = [[UIScrollView alloc] initWithFrame:self.view.frame];
-  _scrollView.contentSize = self.image.size;
-  [_scrollView addSubview:_imageView];
-  
-  [self.view addSubview:_scrollView];
 }
 
 - (void)setupImageView {

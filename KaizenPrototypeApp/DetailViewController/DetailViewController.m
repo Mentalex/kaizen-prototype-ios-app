@@ -22,9 +22,16 @@ static CGFloat const mediaViewCornerRadius = 25.0;
   [super viewDidLoad];
   [self setupCloseButton];
   [self setupImageView];
+  [self setupDismissGesture];
 }
 
-#pragma mark Private Methods
+#pragma mark - Private Methods
+
+- (void)setupDismissGesture {
+  UIPanGestureRecognizer *dismissPanGesture = [UIPanGestureRecognizer new];
+  [dismissPanGesture addTarget:self action:@selector(handleDismissPanGesture:)];
+  [self.view addGestureRecognizer:dismissPanGesture];
+}
 
 - (void)setupCloseButton {
   UIBarButtonItem *closeButton = [[UIBarButtonItem alloc] initWithTitle:@"Close"
@@ -86,6 +93,23 @@ static CGFloat const mediaViewCornerRadius = 25.0;
 
 - (void)dismissAction {
   [[self navigationController] dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)handleDismissPanGesture:(UIPanGestureRecognizer *)gesture {
+  NSLog(@"Pan gesture recognizer state: %ld", (long)gesture.state);
+  switch (gesture.state) {
+    case UIGestureRecognizerStateBegan:
+      break;
+    case UIGestureRecognizerStateChanged:
+    case UIGestureRecognizerStatePossible:
+      break;
+    case UIGestureRecognizerStateCancelled:
+    case UIGestureRecognizerStateFailed:
+    case UIGestureRecognizerStateEnded:
+      break;
+    default:
+      break;
+  }
 }
 
 #pragma mark Methods Implementation
